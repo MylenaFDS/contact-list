@@ -54,3 +54,4 @@ const ContactItem: React.FC<ContactItemProps> = ({ contact, onEdit }) => {
 };
 
 export default ContactItem;
+

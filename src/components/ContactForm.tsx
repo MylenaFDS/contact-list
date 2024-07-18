@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addContact, editContact } from '../store/contactsSlice';
@@ -35,6 +35,12 @@ interface ContactFormProps {
 const ContactForm: React.FC<ContactFormProps> = ({ existingContact, onSave }) => {
   const [contact, setContact] = useState(existingContact || { id: '', fullName: '', email: '', phone: '' });
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (existingContact) {
+      setContact(existingContact);
+    }
+  }, [existingContact]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setContact({
